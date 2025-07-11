@@ -1,0 +1,49 @@
+{{ define "content" }}
+<div class="container py-4">
+    <h2 class="mb-4 fw-bold text-white">Daftar Penyewa PlayStation</h2>
+
+    <div class="btn-wrapper mb-3">
+        <a href="/tambah" class="btn btn-warning fw-semibold">+ Tambah Penyewa</a>
+        <a href="/laporan" class="btn btn-outline-light fw-semibold">🖨 Cetak Laporan PDF</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover text-center align-middle shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nama Penyewa</th>
+                    <th>Jenis PlayStation</th>
+                    <th>Tanggal Sewa</th>
+                    <th>Tanggal Kembali</th>
+                    <th>Harga</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{ range .Data }}
+                <tr style="background-color: #1e1e2f; color: #fff;">
+                    <td>{{ .ID }}</td>
+                    <td>{{ .NamaPenyewa }}</td>
+                    <td>{{ .JenisPS }}</td>
+                    <td>{{ .TanggalSewa }}</td>
+                    <td>{{ .TanggalKembali }}</td>
+                    <td>Rp{{ .Harga }}</td>
+                    <td>
+                        <div class="d-flex justify-content-center gap-2">
+                            <a href="/edit/{{ .ID }}" class="btn btn-sm btn-outline-warning rounded-pill px-3">Edit</a>
+                            <a href="/hapus/{{ .ID }}" class="btn btn-sm btn-danger rounded-pill px-3"
+                               onclick="return confirm('Hapus data ini?')">Hapus</a>
+                        </div>
+                    </td>
+                </tr>
+                {{ else }}
+                <tr>
+                    <td colspan="7" class="text-center text-white-50">Tidak ada data penyewa</td>
+                </tr>
+                {{ end }}
+            </tbody>
+        </table>
+    </div>
+</div>
+{{ end }}

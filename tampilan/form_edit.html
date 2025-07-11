@@ -1,0 +1,47 @@
+{{ define "content" }}
+<div class="container py-5 d-flex justify-content-center">
+    <div class="col-lg-8">
+        <h2 class="mb-4 fw-bold text-white text-center">Edit Data Penyewa</h2>
+
+        <form method="POST" action="/edit/{{ .Data.ID }}" class="p-4 rounded shadow-sm border-0" style="background-color: #fff; color: #333; font-size: 1.05rem;">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="nama_penyewa" class="form-label fw-semibold mb-1">👤 Nama Penyewa</label>
+                    <input type="text" class="form-control rounded-3 py-2 px-3" id="nama_penyewa" name="nama_penyewa" value="{{ .Data.NamaPenyewa }}" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="jenis_playstation" class="form-label fw-semibold mb-1">🎮 Jenis PlayStation</label>
+                    <select class="form-select rounded-3 py-2 px-3" id="jenis_playstation" name="jenis_playstation" required>
+                        <option value="">-- Pilih Jenis --</option>
+                        <option value="PS2" {{ if eq .Data.JenisPS "PS2" }}selected{{ end }}>PS2</option>
+                        <option value="PS3" {{ if eq .Data.JenisPS "PS3" }}selected{{ end }}>PS3</option>
+                        <option value="PS4" {{ if eq .Data.JenisPS "PS4" }}selected{{ end }}>PS4</option>
+                        <option value="PS5" {{ if eq .Data.JenisPS "PS5" }}selected{{ end }}>PS5</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="tanggal_sewa" class="form-label fw-semibold mb-1">📅 Tanggal Sewa</label>
+                    <input type="date" class="form-control rounded-3 py-2 px-3" id="tanggal_sewa" name="tanggal_sewa" value="{{ .Data.TanggalSewa }}" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="tanggal_kembali" class="form-label fw-semibold mb-1">📅 Tanggal Kembali</label>
+                    <input type="date" class="form-control rounded-3 py-2 px-3" id="tanggal_kembali" name="tanggal_kembali" value="{{ .Data.TanggalKembali }}" required>
+                </div>
+
+                <div class="col-12">
+                    <label for="harga" class="form-label fw-semibold mb-1">💰 Harga (Rp)</label>
+                    <input type="number" class="form-control rounded-3 py-2 px-3" id="harga" name="harga" value="{{ .Data.Harga }}" required>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <a href="/penyewa" class="btn btn-outline-secondary rounded-pill px-4 py-2 fw-semibold" style="font-size: 0.95rem;">Kembali</a>
+                <button type="submit" class="btn btn-warning rounded-pill px-4 py-2 fw-semibold" style="font-size: 0.95rem;">Simpan</button>
+            </div>
+        </form>
+    </div>
+</div>
+{{ end }}
